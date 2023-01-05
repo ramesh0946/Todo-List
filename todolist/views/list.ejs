@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <div class="box" id="heading">
+        <h1>
+            <%= listTitle %>
+        </h1>
+    </div>
+
+    <div class="box">
+        <!-- this loop is used to display each item in single line -->
+        
+        <% for(var i=0; i<newListItems.length;i++){ %>
+
+            <!-- this form is used to delete the item -->
+
+            <form action="/delete" method="post">
+                <div class="item">
+                    <input type="checkbox" name="checkbox" value="<%= newListItems[i]._id %>"
+                        onchange="this.form.submit()">
+                    <p>
+                        <%= newListItems[i].name %>
+                    </p>
+                </div>
+            </form>
+            <% } %>
+
+            <!-- this form is used to add new items -->
+
+                <form class="item" action="/" method="post">
+                    <input type="text" name="newItem" placeholder="Add more" required>
+                    <button type="submit" name="list" value=<%=listTitle %>>+</button>
+                </form>
+    </div>
+</body>
+
+</html>
